@@ -22,12 +22,12 @@ jobs:
       - name: 'configure aws credentials'
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::<accountnumber>:role/github-oidc-connect-test
+          role-to-assume: <rolearn>
           role-session-name: samplerolesession
           aws-region: 'us-west-2'
 
       - name: 'Terraform init and Terraform apply'
         run: | 
-          aws s3 ls
+          aws sts get-caller-identity
           terraform init 
           terraform apply -auto-approve 
